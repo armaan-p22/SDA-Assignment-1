@@ -8,7 +8,6 @@ smart-device-factory/
 ├── README.md
 ├── src/
 │   ├── main/
-│   │   └── java/
 │   │       ├── smartdevices/           # Product classes
 │   │       │   ├── SmartDevice.java
 │   │       │   ├── SmartBulb.java
@@ -21,8 +20,7 @@ smart-device-factory/
 │   │           ├── UsageDataFactory.java
 │   │           ├── BulbUsageFactory.java
 │   │           └── LockUsageFactory.java
-│   └── test/
-│       └── java/                       # Test classes
+│   └── test/                      # Test classes
 │           ├── TestSmartDeviceSystem.java
 │           ├── PatternDemonstrationTest.java
 │           └── PerformanceTest.java
@@ -80,6 +78,7 @@ PerformanceTest.java
 <img width="1146" height="618" alt="Screenshot 2025-09-22 191654" src="https://github.com/user-attachments/assets/8984435a-eb2c-4fec-b863-b441ba895245" />
 
 ## UML Class Diagram 
+
 
 
 
