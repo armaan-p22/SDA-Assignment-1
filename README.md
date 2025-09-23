@@ -1,47 +1,83 @@
-//Members:
-Caren Eissa : 100920554
-Shagufta Shaikh : 100924656
-Armaan Parmar : 100877218
+## Members  
+- Caren Eissa : 100920554  
+- Shagufta Shaikh : 100924656  
+- Armaan Parmar : 100877218  
 
-// Repository Structure
+---
+
+# Smart Device Factory System  
+
+A Java implementation demonstrating Abstract Factory and Factory Method design patterns for creating smart home devices.  
+
+## Design Patterns  
+- Abstract Factory Pattern: `BrandAFactory` and `BrandBFactory` create device families  
+- Factory Method Pattern: `UsageDataFactory` with `BulbUsageFactory` and `LockUsageFactory` set usage data after creation-
+
+# Abstract Factory Pattern:
+-SmartDeviceFactory: Abstract factory interface
+
+-BrandAFactory & BrandBFactory: Concrete factories
+
+-SmartDevice: Abstract product
+
+-SmartBulb & SmartLock: Concrete products
+
+# Factory Method Pattern:
+-UsageDataFactory: Abstract creator for setting usage data
+
+-BulbUsageFactory & LockUsageFactory: Concrete creators
+
+-setUsageData(): Factory method that varies by subclass
+
+
+---
+
+
+## Repository Structure  
+
+```text
 smart-device-factory/
 ├── README.md
 ├── src/
 │   ├── main/
-│   │       ├── smartdevices/           # Product classes
-│   │       │   ├── SmartDevice.java
-│   │       │   ├── SmartBulb.java
-│   │       │   └── SmartLock.java
-│   │       ├── factory/                # Abstract Factory
-│   │       │   ├── SmartDeviceFactory.java
-│   │       │   ├── BrandAFactory.java
-│   │       │   └── BrandBFactory.java
-│   │       └── usage/                  # Factory Method
-│   │           ├── UsageDataFactory.java
-│   │           ├── BulbUsageFactory.java
-│   │           └── LockUsageFactory.java
-│   └── test/                      # Test classes
-│           ├── TestSmartDeviceSystem.java
-│           ├── PatternDemonstrationTest.java
-│           └── PerformanceTest.java
-──────────────────────────────────────────────
- How to Run the Code
+│   │   ├── smartdevices/               # Product classes
+│   │   │   ├── SmartDevice.java
+│   │   │   ├── SmartBulb.java
+│   │   │   └── SmartLock.java
+│   │   ├── factory/                    # Abstract Factory
+│   │   │   ├── SmartDeviceFactory.java
+│   │   │   ├── BrandAFactory.java
+│   │   │   └── BrandBFactory.java
+│   │   └── usage/                      # Factory Method
+│   │       ├── UsageDataFactory.java
+│   │       ├── BulbUsageFactory.java
+│   │       └── LockUsageFactory.java
+│   └── test/                           # Test classes
+│       ├── TestSmartDeviceSystem.java
+│       ├── PatternDemonstrationTest.java
+│       └── PerformanceTest.java
+````
 
-//Prerequisites
+---
 
-- Java JDK 8 or higher
-- Command line or IDE (IntelliJ / Eclipse)
+## How to Run the Code
 
-Compilation
+### Prerequisites
+
+* Java JDK 8 or higher
+* Command line or IDE (IntelliJ / Eclipse)
+
+### Compilation
 
 ```bash
-Navigate to project root
+# Navigate to project root
 cd smart-device-factory
 
 # Compile all main and test classes
 javac -d bin $(find src/main/java -name "*.java") $(find src/test/java -name "*.java")
+```
 
-//Execution
+### Execution
 
 ```bash
 # Run assignment demo
@@ -52,33 +88,94 @@ java -cp bin PatternDemonstrationTest
 
 # Run performance tests
 java -cp bin PerformanceTest
+```
 
+---
 
-// Tests
-TestSmartDeviceSystem.java
-- Creates Brand A Smart Bulb and Brand B Smart Lock
-- Demonstrates Abstract Factory & Factory Method usage
-- Validates device operations (on/off, lock/unlock)
+## Test Methods Description
 
-PatternDemonstrationTest.java
-- Demonstrates abstract factory pattern polymorphism
-- Demonstrates factory method runtime data handling
-- Shows polymorphism across brands and devices
+### 1. TestSmartDeviceSystem.java
 
-PerformanceTest.java
-- Measures large-scale device creation performance
--Stress tests with concurrent operations
+**Main Assignment Demonstration** – demonstrates the assignment requirements.
 
-// Output Screenshots
- <img width="1572" height="498" alt="Screenshot 2025-09-22 191526" src="https://github.com/user-attachments/assets/f83beff5-804a-43ae-ad3c-5d1b1fecb067" />
+#### `testBrandABulb()`
 
+* **Purpose**: Creates and tests a Brand A Smart Bulb (Assignment Requirement 1)
+* **Process**:
 
+  * Create Brand A factory (Abstract Factory pattern)
+  * Create smart bulb with the factory
+  * Set usage data (Factory Method pattern)
+  * Display device information and test functionality
+* **Expected Output**:
 
-<img width="1307" height="345" alt="Screenshot 2025-09-22 191621" src="https://github.com/user-attachments/assets/911f5968-31a3-479c-b548-774c392c80aa" />
-<img width="1146" height="618" alt="Screenshot 2025-09-22 191654" src="https://github.com/user-attachments/assets/8984435a-eb2c-4fec-b863-b441ba895245" />
+```text
+Creating Brand A Smart Bulb...
+Power usage data loaded for Brand A bulb: XX.X watts
+=== Smart Bulb Information ===
+Brand: Brand A
+Device ID: BULB-A001
+Power Usage: XX.X watts
+Status: OFF
+==============================
+Brand A Smart Bulb BULB-A001 is now ON
+Brand A Smart Bulb BULB-A001 is now OFF
+```
 
-## UML Class Diagram 
+#### `testBrandBLock()`
 
+* **Purpose**: Creates and tests a Brand B Smart Lock (Assignment Requirement 2)
+* **Expected Output**:
 
+```text
+Creating Brand B Smart Lock...
+Battery level data loaded for Brand B lock: XX.X%
+=== Smart Lock Information ===
+Brand: Brand B
+Device ID: LOCK-B001
+Battery Level: XX.X%
+Status: LOCKED
+==============================
+Brand B Smart Lock LOCK-B001 is now UNLOCKED
+Brand B Smart Lock LOCK-B001 is now LOCKED
+```
 
+#### `testAllDevices()`
 
+* **Purpose**: Comprehensive test of all device types and brands
+* **Expected Output**: Summary of all created devices with their properties
+
+---
+
+### 2. PatternDemonstrationTest.java
+
+**Design Pattern Focused Testing**
+
+* `demonstrateAbstractFactoryPattern()` – Shows how client code works with abstract factory interface
+* `demonstrateFactoryMethodPattern()` – Shows how different factory methods handle usage data differently
+* `demonstratePolymorphism()` – Shows polymorphic behavior across device types
+
+---
+
+### 3. PerformanceTest.java
+
+**Performance and Stress Testing**
+
+* `performanceTest()` – Creates 1000 devices, measures execution time
+* `stressTest()` – Simulates multiple concurrent clients to ensure stability
+
+---
+
+## Output Screenshots
+
+![Demo Output](<Screenshot 2025-09-22 191526.png>)
+![Pattern Demonstration](<Screenshot 2025-09-22 191621.png>)
+![Performance Test](<Screenshot 2025-09-22 191654-1.png>)
+
+---
+
+## UML Class Diagram
+
+![](<Screenshot 2025-09-22 at 9.13.04 PM.png>) 
+
+```
