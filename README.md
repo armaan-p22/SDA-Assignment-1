@@ -57,28 +57,29 @@ java -cp bin PerformanceTest
 
 
 // Tests
-
 TestSmartDeviceSystem.java
-
 - Creates Brand A Smart Bulb and Brand B Smart Lock
 - Demonstrates Abstract Factory & Factory Method usage
 - Validates device operations (on/off, lock/unlock)
 
 PatternDemonstrationTest.java
-
 - Demonstrates abstract factory pattern polymorphism
 - Demonstrates factory method runtime data handling
 - Shows polymorphism across brands and devices
 
 PerformanceTest.java
-
 - Measures large-scale device creation performance
 -Stress tests with concurrent operations
 
-// Output
+// Output Screenshots
+ <img width="1572" height="498" alt="Screenshot 2025-09-22 191526" src="https://github.com/user-attachments/assets/f83beff5-804a-43ae-ad3c-5d1b1fecb067" />
 
 
+
+<img width="1307" height="345" alt="Screenshot 2025-09-22 191621" src="https://github.com/user-attachments/assets/911f5968-31a3-479c-b548-774c392c80aa" />
+<img width="1146" height="618" alt="Screenshot 2025-09-22 191654" src="https://github.com/user-attachments/assets/8984435a-eb2c-4fec-b863-b441ba895245" />
 
 ## UML Class Diagram 
+
 
 
