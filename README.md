@@ -1,248 +1,174 @@
-Smart Device Factory System - Design Patterns Assignment
-//Overview
-This project implements a smart home device factory system using two key design patterns:
+# Smart Device Factory System
 
-Abstract Factory Pattern: For creating families of related smart devices (Brand A and Brand B)
-Factory Method Pattern: For setting usage data (power consumption for bulbs, battery level for locks)
+A Java implementation demonstrating Abstract Factory and Factory Method design patterns for creating smart home devices.
 
-The system allows creation of smart bulbs and smart locks from different brands, with usage data loaded from a simulated external database.
-//Repository Structure
+## Overview
+
+This project implements a smart home device factory system that creates families of related smart devices (bulbs and locks) for different brands, with usage data management handled through factory methods that simulate reading from external databases.
+
+## Design Patterns Implemented
+
+### Abstract Factory Pattern
+- **Purpose**: Creates families of related smart devices without specifying concrete classes
+- **Components**:
+  - `SmartDeviceFactory` - Abstract factory interface
+  - `BrandAFactory`, `BrandBFactory` - Concrete factory implementations
+  - `SmartDevice` - Abstract product base class
+  - `SmartBulb`, `SmartLock` - Concrete product implementations
+
+### Factory Method Pattern
+- **Purpose**: Manages usage data setting for different device types after creation
+- **Components**:
+  - `UsageDataFactory` - Abstract creator with factory method
+  - `BulbUsageFactory`, `LockUsageFactory` - Concrete creators
+  - Simulates external database access for power/battery data
+
+## Repository Structure
+
+```
 smart-device-factory/
-│
-├── README.md                           # This file
-├── .gitignore                          # Git ignore file
-│
+├── README.md
 ├── src/
 │   ├── main/
 │   │   └── java/
-│   │       ├── smartdevices/           # Core device classes
-│   │       │   ├── SmartDevice.java        # Abstract base class
-│   │       │   ├── SmartBulb.java          # Concrete bulb implementation
-│   │       │   └── SmartLock.java          # Concrete lock implementation
-│   │       │
-│   │       ├── factory/                # Abstract Factory pattern
-│   │       │   ├── SmartDeviceFactory.java # Abstract factory interface
-│   │       │   ├── BrandAFactory.java      # Concrete factory for Brand A
-│   │       │   └── BrandBFactory.java      # Concrete factory for Brand B
-│   │       │
-│   │       └── usage/                  # Factory Method pattern
-│   │           ├── UsageDataFactory.java   # Abstract creator
-│   │           ├── BulbUsageFactory.java   # Concrete creator for bulbs
-│   │           └── LockUsageFactory.java   # Concrete creator for locks
-│   │
+│   │       ├── smartdevices/           # Product classes
+│   │       │   ├── SmartDevice.java
+│   │       │   ├── SmartBulb.java
+│   │       │   └── SmartLock.java
+│   │       ├── factory/                # Abstract Factory implementation
+│   │       │   ├── SmartDeviceFactory.java
+│   │       │   ├── BrandAFactory.java
+│   │       │   └── BrandBFactory.java
+│   │       └── usage/                  # Factory Method implementation
+│   │           ├── UsageDataFactory.java
+│   │           ├── BulbUsageFactory.java
+│   │           └── LockUsageFactory.java
 │   └── test/
 │       └── java/                       # Test classes
-│           ├── TestSmartDeviceSystem.java      # Main assignment demo
-│           ├── PatternDemonstrationTest.java   # Pattern-focused tests
-│           └── PerformanceTest.java            # Performance testing
+│           ├── TestSmartDeviceSystem.java
+│           ├── PatternDemonstrationTest.java
+│           └── PerformanceTest.java
+```
 
-Folder Contents:
+### Folder Contents
 
-src/main/java/: Contains all source code organized by package
+- **`src/main/java/`** - Source code organized by package:
+  - `smartdevices/` - Product hierarchy and device implementations
+  - `factory/` - Abstract Factory pattern for device creation
+  - `usage/` - Factory Method pattern for usage data management
 
-smartdevices: Product hierarchy (SmartDevice, SmartBulb, SmartLock)
-factory: Abstract Factory implementation for device creation
-usage: Factory Method implementation for usage data management
+- **`src/test/java/`** - Comprehensive test suites:
+  - Assignment requirement demonstrations
+  - Design pattern focused tests
+  - Performance and stress testing
 
+## Test Methods
 
-src/test/java/: Contains comprehensive test suites
+### 1. TestSmartDeviceSystem.java
+**Main assignment demonstration fulfilling project requirements**
 
-Main assignment demonstration
-Design pattern focused tests
-Performance and stress tests
+#### `testBrandABulb()`
+- Creates Brand A Smart Bulb (Assignment Requirement 1)
+- Demonstrates Abstract Factory pattern usage
+- Shows Factory Method pattern for power usage data
+- Tests basic bulb operations (on/off)
 
+#### `testBrandBLock()`
+- Creates Brand B Smart Lock (Assignment Requirement 2)
+- Demonstrates Abstract Factory pattern usage
+- Shows Factory Method pattern for battery level data
+- Tests basic lock operations (lock/unlock)
 
-docs/: Documentation including UML diagrams and design explanations
-build/: Compilation scripts and build utilities
-screenshots/: Visual proof of test execution and system functionality
+#### `testAllDevices()`
+- Comprehensive test of all device/brand combinations
+- Validates system scalability and consistency
 
-Design Patterns Implementation
-Abstract Factory Pattern
-Purpose: Creates families of related objects (smart devices) without specifying their concrete classes.
-Components:
+### 2. PatternDemonstrationTest.java
+**Design pattern focused testing**
 
-SmartDeviceFactory (Abstract Factory Interface)
-BrandAFactory, BrandBFactory (Concrete Factories)
-SmartDevice (Abstract Product)
-SmartBulb, SmartLock (Concrete Products)
+#### `demonstrateAbstractFactoryPattern()`
+- Shows client code working with abstract factory interface
+- Demonstrates polymorphism in factory selection
 
-Benefits:
+#### `demonstrateFactoryMethodPattern()`
+- Shows runtime factory method selection based on device type
+- Demonstrates different usage data handling approaches
 
-Easy to add new brands without modifying existing code
-Ensures consistency within device families
-Encapsulates object creation logic
+#### `demonstratePolymorphism()`
+- Shows uniform interface across different device implementations
+- Validates polymorphic behavior
 
-Factory Method Pattern
-Purpose: Handles setting usage data for devices after creation, with different behavior for different device types.
-Components:
+### 3. PerformanceTest.java
+**System performance validation**
 
-UsageDataFactory (Abstract Creator)
-BulbUsageFactory, LockUsageFactory (Concrete Creators)
-setUsageData() (Factory Method)
+#### `performanceTest()`
+- Tests creation performance with 1000 devices
+- Measures execution time for large-scale operations
 
-Benefits:
+#### `stressTest()`
+- Simulates multiple concurrent client access
+- Validates system stability under load
 
-Separates usage data logic from device creation
-Extensible for new device types
-Simulates reading from external data sources
+## Compilation and Execution
 
-Test Methods Description
-1. TestSmartDeviceSystem.java
-Main Assignment Demonstration
-This is the primary test class that demonstrates the specific requirements from the assignment.
-Test Methods:
-testBrandABulb()
+### Prerequisites
+- Java JDK 8 or higher
+- Command line access
 
-Purpose: Creates and tests a Brand A Smart Bulb (Assignment Requirement 1)
-Process:
+### Compilation
+```bash
+# Navigate to project root
+cd smart-device-factory
 
-Creates a Brand A factory using Abstract Factory pattern
-Creates a smart bulb using the factory
-Sets usage data using Factory Method pattern
-Displays device information and tests functionality
+# Compile main classes
+javac -d . src/main/java/smartdevices/*.java src/main/java/factory/*.java src/main/java/usage/*.java
 
+# Compile test classes
+javac -cp . src/test/java/*.java
+```
 
-Expected Output:
+### Execution
+```bash
+# Run main assignment test
+java -cp ".;src/test/java" TestSmartDeviceSystem
 
-  Creating Brand A Smart Bulb...
-  Power usage data loaded for Brand A bulb: XX.X watts
-  === Smart Bulb Information ===
-  Brand: Brand A
-  Device ID: BULB-A001
-  Power Usage: XX.X watts
-  Status: OFF
-  ==============================
-  Brand A Smart Bulb BULB-A001 is now ON
-  Brand A Smart Bulb BULB-A001 is now OFF
-testBrandBLock()
+# Run pattern demonstration
+java -cp ".;src/test/java" PatternDemonstrationTest
 
-Purpose: Creates and tests a Brand B Smart Lock (Assignment Requirement 2)
-Process:
+# Run performance tests
+java -cp ".;src/test/java" PerformanceTest
+```
 
-Creates a Brand B factory using Abstract Factory pattern
-Creates a smart lock using the factory
-Sets usage data using Factory Method pattern
-Displays device information and tests functionality
+## Test Execution Results
 
+### Assignment Requirements Test Output
 
-Expected Output:
-
-  Creating Brand B Smart Lock...
-  Battery level data loaded for Brand B lock: XX.X%
-  === Smart Lock Information ===
-  Brand: Brand B
-  Device ID: LOCK-B001
-  Battery Level: XX.X%
-  Status: LOCKED
-  ==============================
-  Brand B Smart Lock LOCK-B001 is now UNLOCKED
-  Brand B Smart Lock LOCK-B001 is now LOCKED
-testAllDevices()
-
-Purpose: Comprehensive test of all device types and brands
-Process: Creates and configures all combinations of devices and brands
-Expected Output: Summary of all created devices with their properties
-
-2. PatternDemonstrationTest.java
-Design Pattern Focused Testing
-Test Methods:
-demonstrateAbstractFactoryPattern()
-
-Purpose: Shows how client code works with abstract factory interface
-Key Points: Demonstrates polymorphism and encapsulation of object creation
-
-demonstrateFactoryMethodPattern()
-
-Purpose: Shows how different factory methods handle usage data differently
-Key Points: Demonstrates runtime polymorphism in factory method selection
-
-demonstratePolymorphism()
-
-Purpose: Shows polymorphic behavior across different device types
-Key Points: Same interface works with different concrete implementations
-
-3. PerformanceTest.java
-Performance and Stress Testing
-Test Methods:
-performanceTest()
-
-Purpose: Tests creation performance with 1000 devices
-Metrics: Measures execution time for large-scale device creation
-
-stressTest()
-
-Purpose: Simulates multiple concurrent clients using the system
-Validation: Ensures system stability under load
-
-Compilation and Execution
-Prerequisites
-
-Java 8 or higher
-Command line access
-
-Compilation Steps
-
-Navigate to project root directory:
-
-bash   cd smart-device-factory
-
-Compile all source files:
-
-bash   # Create build directories
-   mkdir -p build/classes
-
-   # Compile main sources
-   javac -d build/classes src/main/java/**/*.java
-
-   # Compile test sources
-   javac -cp build/classes -d build/classes src/test/java/*.java
-
-Or use the provided script:
-
-bash   chmod +x build/compile.sh
-   ./build/compile.sh
-Execution Steps
-
-Run main assignment demonstration:
-
-bash   cd build/classes
-   java TestSmartDeviceSystem
-
-Run pattern demonstration:
-
-bash   java PatternDemonstrationTest
-
-Run performance tests:
-
-bash   java PerformanceTest
-Test Execution Results
-Screenshot 1: Main Assignment Test (TestSmartDeviceSystem)
-Expected Output:
+============================================================
 SMART HOME DEVICE FACTORY SYSTEM TEST
-
+============================================================
 
 --- TEST CASE 1: Brand A Smart Bulb ---
 Creating Brand A Smart Bulb...
-Power usage data loaded for Brand A bulb: 45.2 watts
+Power usage data loaded for Brand A bulb: 50.464728801150386 watts
 === Smart Bulb Information ===
 Brand: Brand A
 Device ID: BULB-A001
-Power Usage: 45.2 watts
+Power Usage: 50.464728801150386 watts
 Status: OFF
-
+==============================
 Brand A Smart Bulb BULB-A001 is now ON
 Brand A Smart Bulb BULB-A001 is now OFF
 ✓ Brand A Bulb test completed successfully
 
 --- TEST CASE 2: Brand B Smart Lock ---
 Creating Brand B Smart Lock...
-Battery level data loaded for Brand B lock: 78.5%
+Battery level data loaded for Brand B lock: 73.3123547022241%
 === Smart Lock Information ===
 Brand: Brand B
 Device ID: LOCK-B001
-Battery Level: 78.5%
+Battery Level: 73.3123547022241%
 Status: LOCKED
-
+==============================
 Brand B Smart Lock LOCK-B001 is now UNLOCKED
 Brand B Smart Lock LOCK-B001 is now LOCKED
 ✓ Brand B Lock test completed successfully
@@ -251,18 +177,47 @@ Brand B Smart Lock LOCK-B001 is now LOCKED
 
 Testing BrandA devices:
 Creating Brand A Smart Bulb...
-Power usage data loaded for Brand A bulb: 45.2 watts
-Created: Brand A Bulb (ID: BULB-BrandA-001, Power: 45.2W)
+Power usage data loaded for Brand A bulb: 50.464728801150386 watts
+Created: Brand A Bulb (ID: BULB-BrandA-001, Power: 50.464728801150386W)
 Creating Brand A Smart Lock...
-Battery level data loaded for Brand A lock: 82.1%
-Created: Brand A Lock (ID: LOCK-BrandA-001, Battery: 82.1%)
+Battery level data loaded for Brand A lock: 70.8051809366431%
+Created: Brand A Lock (ID: LOCK-BrandA-001, Battery: 70.8051809366431%)
 
 Testing BrandB devices:
 Creating Brand B Smart Bulb...
-Power usage data loaded for Brand B bulb: 38.7 watts
-Created: Brand B Bulb (ID: BULB-BrandB-001, Power: 38.7W)
+Power usage data loaded for Brand B bulb: 47.32893887039381 watts
+Created: Brand B Bulb (ID: BULB-BrandB-001, Power: 47.32893887039381W)
 Creating Brand B Smart Lock...
-Battery level data loaded for Brand B lock: 78.5%
-Created: Brand B Lock (ID: LOCK-BrandB-001, Battery: 78.5%)
+Battery level data loaded for Brand B lock: 73.3123547022241%
+Created: Brand B Lock (ID: LOCK-BrandB-001, Battery: 73.3123547022241%)
 
+============================================================
 ALL TESTS COMPLETED SUCCESSFULLY!
+============================================================
+
+
+### Key Features Demonstrated
+
+1. Abstract Factory Pattern: Different factories create consistent device families
+2. Factory Method Pattern: Usage data handled differently for bulbs (watts) vs locks (battery %)
+3. Polymorphism: Uniform interface across different brands and device types
+4. Simulated External Data: Usage values loaded from simulated database
+5. Extensibility: Easy addition of new brands or device types
+
+### Success Criteria Met
+
+- Brand A Smart Bulb created and tested (Requirement 1)
+- Brand B Smart Lock created and tested (Requirement 2)
+- Abstract Factory pattern properly implemented
+- Factory Method pattern properly implemented
+- Usage data loaded from simulated external source
+- Comprehensive test coverage with multiple test classes
+- Clean separation of concerns with package structure
+
+## Architecture Benefits
+
+- Extensibility: New brands can be added without modifying existing code
+- Consistency: Factory pattern ensures related products work together
+- Separation of Concerns: Clear distinction between device creation and usage data management
+- Testability: Comprehensive test coverage validates pattern implementation
+- Maintainability: Well-organized package structure supports long-term maintenance
